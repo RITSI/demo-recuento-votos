@@ -5,26 +5,45 @@ $( document ).ready(function() {
 
 	$( document ).bind("keypress", function( event ) {
 	  var target = null;
-	  if ( event.which == 49 ) {
+	  var addVotes = 0;
+	  if ( event.which == 49 ) { //1
 	  	target = $('.progress-bar-success');
-	  	totalVotes = parseInt(totalVotes) + 1;
+	  	addVotes = 1;
 	  }
-	  if ( event.which == 50 ) {
+	  if ( event.which == 50 ) { //2
 		target = $('.progress-bar-danger');
-		totalVotes = parseInt(totalVotes) + 1;
+		addVotes = 1;
 	  }
-	  if ( event.which == 51 ) {
+	  if ( event.which == 51 ) { //3
 		target = $('.progress-bar-warning');
-		totalVotes = parseInt(totalVotes) + 1;
+		addVotes = 1;
 	  }
-	  if ( event.which == 52 ) {
+	  if ( event.which == 52 ) { //4
 		target = $('.progress-bar-info');
-		totalVotes = parseInt(totalVotes) + 1;
+		addVotes = 1;
 	  }
 
+	  if ( event.which == 113 ) { //q
+	  	target = $('.progress-bar-success');
+		addVotes = 3;
+	  }	
+	  if ( event.which == 119 ) { //w
+		target = $('.progress-bar-danger');
+		addVotes = 3;
+	  }
+	  if ( event.which == 101 ) { //e
+		target = $('.progress-bar-warning');
+		addVotes = 3;
+	  }
+	  if ( event.which == 114 ) { //r
+		target = $('.progress-bar-info');
+		addVotes = 3;
+	  }
+	  //q = 113 w = 119 e = 101 r = 114
+	  totalVotes = parseInt(totalVotes) + addVotes;
 	  $('#votos-emitidos').text(totalVotes);
 
-	  target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + 1);
+	  target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + addVotes);
 	  target.children().text(target.attr("aria-valuenow") + " votos");
 
 	  $('.progress-bar').attr("aria-valuemax", totalVotes);
