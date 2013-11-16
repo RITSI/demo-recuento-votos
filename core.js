@@ -7,18 +7,21 @@ $( document ).ready(function() {
 	  var target = null;
 	  if ( event.which == 49 ) {
 	  	target = $('.progress-bar-success');
+	  	totalVotes = parseInt(totalVotes) + 1;
 	  }
 	  if ( event.which == 50 ) {
 		target = $('.progress-bar-danger');
+		totalVotes = parseInt(totalVotes) + 1;
 	  }
 	  if ( event.which == 51 ) {
 		target = $('.progress-bar-warning');
+		totalVotes = parseInt(totalVotes) + 1;
 	  }
 	  if ( event.which == 52 ) {
 		target = $('.progress-bar-info');
+		totalVotes = parseInt(totalVotes) + 1;
 	  }
 
-	  totalVotes = parseInt(totalVotes) + 1;
 	  $('#votos-emitidos').text(totalVotes);
 
 	  target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + 1);
