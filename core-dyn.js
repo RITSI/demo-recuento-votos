@@ -1,5 +1,6 @@
 var totalVotes = 0;
 var numOptions = 0;
+var stackKey = [];
 
 $( document ).ready(function() {
 	$('.progress-bar').attr("aria-valuenow", 0);
@@ -14,13 +15,59 @@ function registerKeys() {
 	  target = null;
 	  targetLabel = null;
 	  addVotes = 0;
+	  
+	  if(stackKey.length != 0 && event.which == 114){
+		switch(stackKey.pop()){
+		  case 49:
+			targetPos = 0;
+			addVotes = -1;
+			break;
+		  case 50:
+			targetPos = 1;
+			addVotes = -1;
+			break;
+		  case 51:
+			targetPos = 2;
+			addVotes = -1;
+			break;
+		  case 52:
+			targetPos = 3;
+			addVotes = -1;
+			break;
+		}	  
+	  } else {
+		stackKey.push(event.which);
+		switch(event.which){
+		  case 49:
+			targetPos = 0;
+			addVotes = 1;
+			break;
+		  case 50:
+			targetPos = 1;
+			addVotes = 1;
+			break;
+		  case 51:
+			targetPos = 2;
+			addVotes = 1;
+			break;
+		  case 52:
+			targetPos = 3;
+			addVotes = 1;
+			break;
+		}	  
+	  }
+	  
+	  if(targetPos != null){
+		  target = $('#slot-' + targetPos);
+		  targetLabel = $('#slot-' + targetPos + '-label');
+	  }
 
-	  if (event.which >= 49 && event.which <= 57 && event.which < 57 - numOptions ) {
+/*	  if (event.which >= 49 && event.which <= 57 && event.which < 57 - numOptions ) {
 	  	targetPos = event.which - 49;
 	  	target = $('#slot-' + targetPos);
 	  	targetLabel = $('#slot-' + targetPos + '-label');
 	  	addVotes = 1;
-	  }
+	  }*/
 
 	  if (target != null) {
 	    target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + addVotes);
@@ -40,7 +87,7 @@ function updateVotes() {
 }
 
 function buildOptions(options) {
-	var defaultOptions = jQuery.parseJSON('{ "question":"Votación de ejemplo", "slots":[ {"slotlabel":"A favor", "barType":"success"}, {"slotlabel":"En contra", "barType":"danger"}, {"slotlabel":"Abstenciones", "barType":"warning"}, {"slotlabel":"Nulos", "barType":"info"} ]}');
+	var defaultOptions = jQuery.parseJSON('{ "question":"Votación", "slots":[ {"slotlabel":"A favor", "barType":"success"}, {"slotlabel":"En contra", "barType":"danger"}, {"slotlabel":"Blanco", "barType":"warning"}, {"slotlabel":"Nulo", "barType":"info"} ]}');
 
 	if (options == null) {
 		options = defaultOptions;
