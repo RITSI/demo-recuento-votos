@@ -57,75 +57,23 @@ function registerKeys() {
 		target = null;
 		targetLabel = null;
 		addVotes = 0;
-
-		if (stackKey.length != 0 && event.which == 114) {
-			switch (stackKey.pop()) {
-				case 49:
-					targetPos = 0;
-					addVotes = -1;
-					break;
-				case 50:
-					targetPos = 1;
-					addVotes = -1;
-					break;
-				case 51:
-					targetPos = 2;
-					addVotes = -1;
-					break;
-				case 52:
-					targetPos = 3;
-					addVotes = -1;
-					break;
-			}
-		} else {
-			stackKey.push(event.which);
-			switch (event.which) {
-				case 49:
-					targetPos = 0;
-					addVotes = 1;
-					break;
-				case 50:
-					targetPos = 1;
-					addVotes = 1;
-					break;
-				case 51:
-					targetPos = 2;
-					addVotes = 1;
-					break;
-				case 52:
-					targetPos = 3;
-					addVotes = 1;
-					break;
-				case 53:
-					targetPos = 4;
-					addVotes = 1;
-					break;
-				case 54:
-					targetPos = 5;
-					addVotes = 1;
-					break;
-				case 55:
-					targetPos = 6;
-					addVotes = 1;
-					break;
-				case 56:
-					targetPos = 7;
-					addVotes = 1;
-					break;
-			}
-		}
-
-		if (targetPos != null) {
+		console.log(event.which);
+		console.log(stackKey.length);
+		if (stackKey.length != 0 && event.which == 114){
+			var aRetirar = stackKey.pop();
+			targetPos = aRetirar - 49;
 			target = $('#slot-' + targetPos);
 			targetLabel = $('#slot-' + targetPos + '-label');
+			addVotes = -1;
+		} else {
+			if (event.which >= 49 && event.which <= 59 && (event.which - 49) < numOptions ) {
+				stackKey.push(event.which);
+				targetPos = event.which - 49;
+				target = $('#slot-' + targetPos);
+				targetLabel = $('#slot-' + targetPos + '-label');
+				addVotes = 1;
+			}
 		}
-
-		/*	  if (event.which >= 49 && event.which <= 57 && event.which < 57 - numOptions ) {
-					targetPos = event.which - 49;
-					target = $('#slot-' + targetPos);
-					targetLabel = $('#slot-' + targetPos + '-label');
-					addVotes = 1;
-				}*/
 
 		if (target != null) {
 			target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + addVotes);
