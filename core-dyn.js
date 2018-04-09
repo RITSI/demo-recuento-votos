@@ -1,88 +1,146 @@
 var totalVotes = 0;
 var numOptions = 0;
 var stackKey = [];
+var json;
 
-$( document ).ready(function() {
+function generatePoll(){
 	$('.progress-bar').attr("aria-valuenow", 0);
 	$('.progress-bar').attr("aria-valuemin", 0);
+
+	var question = document.getElementById("title").value;
 	
-	buildOptions();
+	var colorOptions = ["\"info\"", "\"success\"", "\"danger\"", "\"warning\""];
+	var length = document.getElementById("voteOptions").getElementsByTagName('input').length;
+
+	var numParticipantes = 0;
+	var participantes = [];
+	
+	for (var index = 1; index <= length ; index++) {
+		var participante = document.getElementById("o"+index).value
+		if ( participante != "" ){
+			participantes.push("{\"slotlabel\":\"" + participante + "\", \"barType\":" + colorOptions[index%4] + "}");
+			numParticipantes++;
+		}
+	}
+
+	json = "{ \"question\":\"" + question + "\", \"slots\":[ ";
+	for (var index = 0; index < participantes.length; ++index) {
+		if ( index > 0 )
+			json += ","
+		json += participantes[index];
+	}
+	json += (" ]}");
+
+	if ( participantes.length == 0 ){
+		buildOptions();
+	} else{
+		buildOptions(jQuery.parseJSON(json));
+		generateTopList(jQuery.parseJSON(json));
+	}
 	registerKeys();
-});
+
+	document.getElementById("input").style.display = "none";
+	document.getElementById("col-lg-12").style.display = "block";
+}
+
+function generateTopList( options ){
+	jQuery.each(options.slots, function (i, slot) {
+		var htmlModel = "<li> Tecla \'" + (i+1) + "\': " + slot.slotlabel;
+		$('#lista').append(htmlModel);
+	});
+	var htmlModel = "<li> Tecla r: Deshacer voto <li>";
+	$('#lista').append(htmlModel);
+}
 
 function registerKeys() {
-	$( document ).bind("keypress", function( event ) {
-	  target = null;
-	  targetLabel = null;
-	  addVotes = 0;
-	  
-	  if(stackKey.length != 0 && event.which == 114){
-		switch(stackKey.pop()){
-		  case 49:
-			targetPos = 0;
-			addVotes = -1;
-			break;
-		  case 50:
-			targetPos = 1;
-			addVotes = -1;
-			break;
-		  case 51:
-			targetPos = 2;
-			addVotes = -1;
-			break;
-		  case 52:
-			targetPos = 3;
-			addVotes = -1;
-			break;
-		}	  
-	  } else {
-		stackKey.push(event.which);
-		switch(event.which){
-		  case 49:
-			targetPos = 0;
-			addVotes = 1;
-			break;
-		  case 50:
-			targetPos = 1;
-			addVotes = 1;
-			break;
-		  case 51:
-			targetPos = 2;
-			addVotes = 1;
-			break;
-		  case 52:
-			targetPos = 3;
-			addVotes = 1;
-			break;
-		}	  
-	  }
-	  
-	  if(targetPos != null){
-		  target = $('#slot-' + targetPos);
-		  targetLabel = $('#slot-' + targetPos + '-label');
-	  }
+	$(document).bind("keypress", function (event) {
+		target = null;
+		targetLabel = null;
+		addVotes = 0;
 
-/*	  if (event.which >= 49 && event.which <= 57 && event.which < 57 - numOptions ) {
-	  	targetPos = event.which - 49;
-	  	target = $('#slot-' + targetPos);
-	  	targetLabel = $('#slot-' + targetPos + '-label');
-	  	addVotes = 1;
-	  }*/
+		if (stackKey.length != 0 && event.which == 114) {
+			switch (stackKey.pop()) {
+				case 49:
+					targetPos = 0;
+					addVotes = -1;
+					break;
+				case 50:
+					targetPos = 1;
+					addVotes = -1;
+					break;
+				case 51:
+					targetPos = 2;
+					addVotes = -1;
+					break;
+				case 52:
+					targetPos = 3;
+					addVotes = -1;
+					break;
+			}
+		} else {
+			stackKey.push(event.which);
+			switch (event.which) {
+				case 49:
+					targetPos = 0;
+					addVotes = 1;
+					break;
+				case 50:
+					targetPos = 1;
+					addVotes = 1;
+					break;
+				case 51:
+					targetPos = 2;
+					addVotes = 1;
+					break;
+				case 52:
+					targetPos = 3;
+					addVotes = 1;
+					break;
+				case 53:
+					targetPos = 4;
+					addVotes = 1;
+					break;
+				case 54:
+					targetPos = 5;
+					addVotes = 1;
+					break;
+				case 55:
+					targetPos = 6;
+					addVotes = 1;
+					break;
+				case 56:
+					targetPos = 7;
+					addVotes = 1;
+					break;
+			}
+		}
 
-	  if (target != null) {
-	    target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + addVotes);
-	    totalVotes = parseInt(totalVotes) + addVotes;
-	    targetLabel.text(target.attr("aria-valuenow"));
-	    $('#votos-emitidos').text(totalVotes);
-	    updateVotes();
-	  }
+		if (targetPos != null) {
+			target = $('#slot-' + targetPos);
+			targetLabel = $('#slot-' + targetPos + '-label');
+		}
+
+		/*	  if (event.which >= 49 && event.which <= 57 && event.which < 57 - numOptions ) {
+					targetPos = event.which - 49;
+					target = $('#slot-' + targetPos);
+					targetLabel = $('#slot-' + targetPos + '-label');
+					addVotes = 1;
+				}*/
+
+		if (target != null) {
+			target.attr("aria-valuenow", parseInt(target.attr("aria-valuenow")) + addVotes);
+			totalVotes = parseInt(totalVotes) + addVotes;
+			targetLabel.text(target.attr("aria-valuenow"));
+			$('#votos-emitidos').text(totalVotes);
+			updateVotes();
+		}
 	});
 }
 
 function updateVotes() {
-	$(".progress-bar").each(function() {
+	$(".progress-bar").each(function () {
 		Element = $(this);
-		Element.attr("style", "width: " + ((parseInt(Element.attr("aria-valuenow"))/totalVotes) * 100).toFixed() + "%;");
+		Element.attr("style", "width: " + ((parseInt(Element.attr("aria-valuenow")) / totalVotes) * 100).toFixed() + "%;");
 	});
 }
 
@@ -91,13 +149,14 @@ function buildOptions(options) {
 
 	if (options == null) {
 		options = defaultOptions;
+		generateTopList(defaultOptions);
 	}
 
 	$('#question').text(options.question);
 
-	jQuery.each(options.slots, function(i, slot) {
-		var htmlModel = '<h2>' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-'+ slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';	
-        $('#option-container').append(htmlModel);
-        numOptions += 1;
+	jQuery.each(options.slots, function (i, slot) {
+		var htmlModel = '<h2>' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
+		$('#option-container').append(htmlModel);
+		numOptions += 1;
 	});
 }
