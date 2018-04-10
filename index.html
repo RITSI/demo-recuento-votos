@@ -7,6 +7,8 @@
   <meta charset="UTF-16">
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/buttons-min.css">
+  <link rel="stylesheet" href="css/some.css">
   <script>
     function addEntries(){
       var numOptions = document.getElementById("voteOptions").getElementsByTagName('input').length + 1;
@@ -14,9 +16,13 @@
       linebreak = document.createElement("br");
       var newEntrie = document.createElement("input");
       newEntrie.type = "text"; newEntrie.id = "o"+numOptions;
+      newEntrie.placeholder = "Opción " + numOptions;
 
       document.getElementById("voteOptions").appendChild(linebreak);
       document.getElementById("voteOptions").appendChild(newEntrie);
+
+      if ( numOptions >= 9 )
+        document.getElementById("addEntrie").style.display = "none";
     }
   </script>
 
@@ -47,15 +53,15 @@
     </div>
     <h2 id="question" class="text-primary"></h2>
     <div class="row">
-      <div class="input" id="input">
-        <p>Título de la votación:</p> <input type="text" id="title"> <br>
-        <p>Opciones de voto (dejar vacío si quiere las opciones por defecto): </p> 
+      <div class="recogida-info" id="input">
+        <input type="text" id="title" placeholder="Título votación"> <br>
         <div id="voteOptions">
-            <input type="text" id="o1"> <br>
-            <input type="text" id="o2">
+            <input type="text" id="o1" placeholder="Opción 1">
         </div>
-        <button type="submit" onclick="addEntries()">Add</button>
-        <button type="submit" onclick="generatePoll()">Done</button>
+          <div class="button-xlarge col-lg-12 col-centered">
+              <button class="pure-button" type="submit" onclick="addEntries()" id="addEntrie"> Añadir opción</button>
+              <button class="pure-button" type="submit" onclick="generatePoll()">Pasar a recuento</button>      
+          </div>
       </div>
       <div class="col-lg-12" id="col-lg-12" style="display:none">
         <h3>Votos emitidos
