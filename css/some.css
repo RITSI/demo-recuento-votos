@@ -1,0 +1,26 @@
+input[type=text]{
+    width:100%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+    }
+    
+input[type=text]:focus{
+    border-color:#E71C2F;
+    box-shadow:0 0 8px 0 #E71C2F;
+}
+
+.button-xlarge{
+    font-size: 200%;
+}
+
+.col-centered{
+    flex: center;
+    align-items: center;
+    float: none;
+    margin: 0 auto;
+}

@@ -57,8 +57,7 @@ function registerKeys() {
 		target = null;
 		targetLabel = null;
 		addVotes = 0;
-		console.log(event.which);
-		console.log(stackKey.length);
+		
 		if (stackKey.length != 0 && event.which == 114){
 			var aRetirar = stackKey.pop();
 			targetPos = aRetirar - 49;
