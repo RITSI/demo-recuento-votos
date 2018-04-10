@@ -20,6 +20,9 @@
 
       document.getElementById("voteOptions").appendChild(linebreak);
       document.getElementById("voteOptions").appendChild(newEntrie);
+
+      if ( numOptions >= 9 )
+        document.getElementById("addEntrie").style.display = "none";
     }
   </script>
 
@@ -56,7 +59,7 @@
             <input type="text" id="o1" placeholder="Opción 1">
         </div>
           <div class="button-xlarge col-lg-12 col-centered">
-              <button class="pure-button" type="submit" onclick="addEntries() "> Añadir opción</button>
+              <button class="pure-button" type="submit" onclick="addEntries()" id="addEntrie"> Añadir opción</button>
               <button class="pure-button" type="submit" onclick="generatePoll()">Pasar a recuento</button>      
           </div>
       </div>
