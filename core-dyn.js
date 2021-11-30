@@ -45,10 +45,10 @@ function generatePoll(){
 
 function generateTopList( options ){
 	jQuery.each(options.slots, function (i, slot) {
-		var htmlModel = "<li> Tecla \'" + (i+1) + "\': " + slot.slotlabel;
+		var htmlModel = "<li> Tecla \'" + (i+1) + "\' o click en el contador: " + slot.slotlabel;
 		$('#lista').append(htmlModel);
 	});
-	var htmlModel = '<li id="deshacer"> Tecla r: Deshacer voto <li>';
+	var htmlModel = '<p id="deshacer" style="margin-top:2em;font-size: 1.2em;text-align:center;"> Tecla r o click aquí: Deshacer voto <p>';
 	$('#lista').append(htmlModel);
 	$('#deshacer').click(function() {
 		var e = jQuery.Event("keypress");
