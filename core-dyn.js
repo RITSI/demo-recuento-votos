@@ -48,8 +48,14 @@ function generateTopList( options ){
 		var htmlModel = "<li> Tecla \'" + (i+1) + "\': " + slot.slotlabel;
 		$('#lista').append(htmlModel);
 	});
-	var htmlModel = "<li> Tecla r: Deshacer voto <li>";
+	var htmlModel = '<li id="deshacer"> Tecla r: Deshacer voto <li>';
 	$('#lista').append(htmlModel);
+	$('#deshacer').click(function() {
+		var e = jQuery.Event("keypress");
+		e.which = 114; 
+		$(document).trigger(e);
+	  });
+
 }
 
 function registerKeys() {
@@ -104,6 +110,11 @@ function buildOptions(options) {
 	jQuery.each(options.slots, function (i, slot) {
 		var htmlModel = '<h2>' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
 		$('#option-container').append(htmlModel);
+		$('#slot-' + i+'-label').click(function() {
+			var e = jQuery.Event("keypress");
+			e.which = 49+i; 
+			$(document).trigger(e);
+		  });
 		numOptions += 1;
 	});
 }
