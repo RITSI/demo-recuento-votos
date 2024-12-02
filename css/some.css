@@ -2,6 +2,10 @@
     --ritsi-red: #DA2724;
 }
 
+* {
+    font-family: 'Exo';
+}
+
 input[type=text] {
     width: 100%;
     border: 2px solid #aaa;
