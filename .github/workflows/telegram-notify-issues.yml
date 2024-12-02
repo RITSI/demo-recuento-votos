@@ -1,0 +1,80 @@
+name: Telegram Message on Issues
+on: 
+  issues:
+    types: 
+      - opened
+      - closed
+      - reopened
+
+jobs:
+  build:
+    name: Notify Issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on issue opened
+        uses: appleboy/telegram-action@master
+        if: ${{ github.event.action == 'opened' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO_GROUP }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *¡Actualizaciones desde GitHub!*
+
+            *${{ github.actor }}* ha creado una nueva issue:
+            
+            Issue: `${{ github.event.issue.title }}`
+            Repositorio: `${{ github.repository }}`
+            
+            Puedes ver los cambios [aquí](${{ github.event.issue.html_url }})
+
+      - name: send telegram message on issue closed
+        uses: appleboy/telegram-action@master
+        if: ${{ github.event.action == 'closed' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO_GROUP }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *¡Actualizaciones desde GitHub!*
+
+            *${{ github.actor }}* ha cerrado una issue:
+            
+            Issue: `${{ github.event.issue.title }}`
+            Repositorio: `${{ github.repository }}`
+            
+            Puedes ver los cambios [aquí](${{ github.event.issue.html_url }})
+
+      - name: send telegram message on issue reopened
+        uses: appleboy/telegram-action@master
+        if: ${{ github.event.action == 'reopened' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO_GROUP }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *¡Actualizaciones desde GitHub!*
+
+            *${{ github.actor }}* ha reabierto una issue:
+            
+            Issue: `${{ github.event.issue.title }}`
+            Repositorio: `${{ github.repository }}`
+            
+            Puedes ver los cambios [aquí](${{ github.event.issue.html_url }})
+      
+      - name: send telegram message when issue have new comments
+        uses: appleboy/telegram-action@master
+        if: ${{ github.event.action == 'commented' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO_GROUP }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *¡Actualizaciones desde GitHub!*
+
+            *${{ github.actor }}* ha comentado en una issue:
+            
+            Issue: `${{ github.event.issue.title }}`
+            Repositorio: `${{ github.repository }}`
+            
+            Puedes ver los cambios [aquí](${{ github.event.issue.html_url }})

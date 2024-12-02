@@ -1,0 +1,65 @@
+name: Reporte de bugs
+description: Reporta un bug para ayudar a mejorar la plataforma de Recuento de Votos.
+title: "[BUG]"
+labels: ["bug :bug:"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar problemas en la plataforma de Recuento de Votos!
+
+        Por favor, rellena la siguiente plantilla para ayudarnos a identificar y resolver el problema.
+
+        Para hacerlo más fácil, por favor, introduce la información detallada a continuación.
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Pasos para reproducir el problema
+      value: |
+        1. 
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Comportamiento esperado
+      description: ¿Qué esperabas que sucediera?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behaviour
+    attributes:
+      label: Comportamiento actual
+      description: ¿Qué sucedió en realidad?
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "### Configuración"
+
+  - type: input
+    id: operating-system
+    attributes:
+      label: Sistema operativo
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Copia los logs de la plataforma de Recuento de Votos y pégalos aquí. Se formateará automáticamente en código, por lo que no es necesario que uses comillas invertidas.
+      render: Shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Contenido adicional
+      description: ¿Hay algo más que debamos saber?

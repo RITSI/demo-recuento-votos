@@ -1,0 +1,47 @@
+name: Dudas
+description: Obtén ayuda con la plataforma de Recuento de Votos
+title: "[DUDA]"
+labels: ["question"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hola, ¿tienes alguna duda? Estaré encantado de ayudarte. Por favor, asegúrate de que no se haya abierto ya una pregunta similar.
+
+  - type: textarea
+    id: issue-faced
+    attributes:
+      label: "Problema que estás teniendo"
+      description: "Describe el problema que estás teniendo. Por favor, sé lo más específico posible."
+    validations:
+      required: true
+      
+  - type: textarea
+    id: traceback
+    attributes:
+      label: "Trazas de error"
+      description: "Si hay algún error, pégalo aquí. Se formateará automáticamente en código (html), por lo que no es necesario que uses comillas invertidas."
+      placeholder: |
+        Traceback
+      render: Shell
+        
+  - type: textarea
+    id: related-code
+    attributes:
+      label: "Código relacionado"
+      description: "Si el problema está relacionado con el código, pégalo aquí. Se formateará automáticamente en código (html), por lo que no es necesario que uses comillas invertidas."
+      placeholder: |
+        LOGS
+      render: html
+
+  - type: markdown
+    attributes:
+      value: "### Configuración"
+
+  - type: input
+    id: operating-system
+    attributes:
+      label: Sistema operativo
+    validations: 
+      required: true

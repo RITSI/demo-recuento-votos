@@ -1,0 +1,37 @@
+name: Feature Request
+description: Sugiérenos una nueva característica para la plataforma de Recuento de Votos
+title: "[FEATURE]"
+labels: ["enhancement"]
+
+body:
+  - type: textarea
+    id: related-problem
+    attributes:
+      label: "Qué tipo de característica te gustaría que se añadiera? ¿Qué problema quieres resolver?"
+      description: "Una descripción clara y concisa de lo que te gustaría que sucediera."
+      placeholder: "Ejemplo: Me gustaría que la plataforma de Recuento de Votos pudiera hacer X porque no hay ninguna forma de hacerlo."
+    validations:
+      required: true
+      
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Describe la solución que te gustaría que se implementara"
+      description: "Una descripción clara y concisa de lo que quieres que suceda."
+      placeholder: "Ejemplo: Creo que sería bueno si se añade la función Y para poder hacer X."
+    validations:
+      required: true
+        
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Describe las alternativas que has considerado"
+      description: "Una descripción clara y concisa de cualquier solución o característica alternativa que hayas considerado."
+      placeholder: "Ejemplo: Considero que Z podría dar con la solución, pero no es tan buena como Y porque..."
+      
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Contenido adicional"
+      description: "Agregue cualquier otro contenido o capturas de pantalla sobre la solicitud de función aquí."
+      placeholder: "Ejemplo: Aquí hay una captura de pantalla de mi oso de peluche."

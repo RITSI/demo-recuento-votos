@@ -1,26 +1,71 @@
-input[type=text]{
-    width:100%;
-    border:2px solid #aaa;
-    border-radius:4px;
-    margin:8px 0;
-    outline:none;
-    padding:8px;
-    box-sizing:border-box;
-    transition:.3s;
-    }
-    
-input[type=text]:focus{
-    border-color:#E71C2F;
-    box-shadow:0 0 8px 0 #E71C2F;
+:root {
+    --ritsi-red: #DA2724;
 }
 
-.button-xlarge{
+* {
+    font-family: 'Exo';
+}
+
+input[type=text] {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+input[type=text]:focus {
+    border-color: var(--ritsi-red);
+    box-shadow: 0 0 8px 0 var(--ritsi-red);
+}
+
+.button-xlarge {
     font-size: 200%;
 }
 
-.col-centered{
+.ritsi-red {
+    color: var(--ritsi-red);
+}
+
+.col-centered {
     flex: center;
     align-items: center;
     float: none;
     margin: 0 auto;
+}
+
+.btn-outline-ritsi {
+    --bs-btn-color: var(--ritsi-red);
+    --bs-btn-border-color: var(--ritsi-red);
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: var(--ritsi-red);
+    --bs-btn-hover-border-color: var(--ritsi-red);
+    --bs-btn-focus-shadow-rgb: 13, 202, 240;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: var(--ritsi-red);
+    --bs-btn-active-border-color: var(--ritsi-red);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--ritsi-red);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--ritsi-red);
+    --bs-gradient: none;
+}
+
+.progress-bar-success {
+    --bs-progress-bar-bg: var(--bs-green)!important;
+}
+
+.progress-bar-danger {
+    --bs-progress-bar-bg: var(--ritsi-red)!important;
+}
+
+.progress-bar-warning {
+    --bs-progress-bar-bg: var(--bs-yellow)!important;
+}
+
+.progress-bar-info {
+    --bs-progress-bar-bg: var(--bs-blue)!important;
 }
