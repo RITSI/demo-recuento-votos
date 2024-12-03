@@ -45,7 +45,7 @@ function generatePoll(){
 
 function generateTopList( options ){
 	jQuery.each(options.slots, function (i, slot) {
-		var htmlModel = "<li> Tecla \'" + (i+1) + "\' o click en el contador: " + slot.slotlabel;
+		var htmlModel = "<li style='margin-left: 1vh'> Tecla \'" + (i+1) + "\' o click en el contador: " + slot.slotlabel;
 		$('#lista').append(htmlModel);
 	});
 	var htmlModel = '<p id="deshacer" style="margin-top:2em;font-size: 1.2em;text-align:center;"> Tecla r o click aquí: Deshacer voto <p>';
@@ -108,7 +108,7 @@ function buildOptions(options) {
 	$('#question').text(options.question);
 
 	jQuery.each(options.slots, function (i, slot) {
-		var htmlModel = '<h2 id="slot-' + i + '-superlabel">' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
+		var htmlModel = '<h2 id="slot-' + i + '-superlabel">' + slot.slotlabel + ' - <span id="slot-' + i + '-label">0</span></h2><div class="progress mb-2"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
 		$('#option-container').append(htmlModel);
 		$('#slot-' + i + '-superlabel').click(function() {
 			var e = jQuery.Event("keypress");

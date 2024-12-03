@@ -55,17 +55,33 @@ input[type=text]:focus {
 }
 
 .progress-bar-success {
-    --bs-progress-bar-bg: var(--bs-green)!important;
+    --bs-progress-bar-bg: var(--bs-green);
 }
 
 .progress-bar-danger {
-    --bs-progress-bar-bg: var(--ritsi-red)!important;
+    --bs-progress-bar-bg: var(--ritsi-red);
 }
 
 .progress-bar-warning {
-    --bs-progress-bar-bg: var(--bs-yellow)!important;
+    --bs-progress-bar-bg: var(--bs-yellow);
 }
 
 .progress-bar-info {
-    --bs-progress-bar-bg: var(--bs-blue)!important;
+    --bs-progress-bar-bg: var(--bs-blue);
+}
+
+.color-success {
+    color: var(--bs-green);
+}
+
+.color-danger {
+    color: var(--ritsi-red);
+}
+
+.color-warning {
+    color: var(--bs-yellow);
+}
+
+.color-info {
+    color: var(--bs-blue);
 }
