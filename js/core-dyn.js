@@ -108,9 +108,9 @@ function buildOptions(options) {
 	$('#question').text(options.question);
 
 	jQuery.each(options.slots, function (i, slot) {
-		var htmlModel = '<h2>' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
+		var htmlModel = '<h2 id="slot-' + i + '-superlabel">' + slot.slotlabel + ' <span id="slot-' + i + '-label">0</span></h2><div class="progress"><div id="slot-' + i + '" class="progress-bar progress-bar-' + slot.barType + '" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"><span class="sr-only"></span></div></div>';
 		$('#option-container').append(htmlModel);
-		$('#slot-' + i+'-label').click(function() {
+		$('#slot-' + i + '-superlabel').click(function() {
 			var e = jQuery.Event("keypress");
 			e.which = 49+i; 
 			$(document).trigger(e);

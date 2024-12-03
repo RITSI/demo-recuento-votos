@@ -4,7 +4,7 @@
 <head>
   <title>RITSI - Recuento de votos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-16">
+  <meta charset="UTF-8">
   <meta name="description" content="Recuento de votos de la Asociación RITSI">
   <meta name="keywords" content="RITSI, votos, recuento">
   <meta name="author" content="Asociación RITSI">
@@ -23,21 +23,25 @@
   <div class="container mt-4">
 
     <nav class="navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/index.html" style="display: flex; align-items: center;">
-          <img src="/logoritsi.png" alt="Bootstrap" width="150" style="margin-right: 10px;">
-          <h1 style="margin: 0; font-size: 2.5rem;">Recuento de votos   </h1>
-          <h3 style="margin: 0; font-size: 1.0rem;">by RITSI</h3>
+      <div class="container d-flex flex-wrap align-items-center text-start">
+        <a class="navbar-brand d-flex flex-row align-items-center w-100" href="/index.html">
+          <img src="/logoritsi.png" alt="Logo RITSI" class="img-fluid me-3" style="max-width: 100px;">
+          <div class="text-start">
+            <h1 class="h4 m-0">Recuento de votos</h1>
+            <h3 class="h6 m-0 text-muted">by RITSI</h3>
+          </div>
         </a>
       </div>
-    </nav>
+    </nav>     
     
     <div class="content">
       <ul class="list-inline" id="lista">
         
       </ul>
     </div>
+
     <h1 id="question" class="ritsi-red"></h1>
+
     <div class="row">
       <div class="recogida-info" id="input">
         <input type="text" id="title" placeholder="Título votación"> <br>
